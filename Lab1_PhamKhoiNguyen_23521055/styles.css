@@ -1,0 +1,72 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.4;
+  color: #000;
+  background: #dfe6f0;   /* light gray like screenshot */
+  margin: 0;
+}
+
+.page {
+  background: #fff;
+  width: 800px;
+  margin: 20px auto;
+  padding: 40px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+.avt {
+  width: 150px;
+  height: auto;
+  border-radius: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.name {
+  margin: 0;
+  font-size: 22px;
+}
+
+.contact {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.contact a { color: #000; text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+
+/* Section headings */
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-top: 1px solid #000;
+  padding-top: 4px;
+  font-size: 14px;
+}
+
+/* Two-column layout for Education/Experience rows */
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.right {
+  text-align: right;
+  font-size: 14px;
+}
+
+/* Lists */
+ul {
+  margin: 4px 0 12px 20px;
+  padding: 0;
+}
+
+ul li {
+  margin: 4px 0;
+}
