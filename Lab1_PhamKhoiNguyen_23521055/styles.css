@@ -2,16 +2,16 @@ body {
   font-family: "Times New Roman", Times, serif;
   line-height: 1.4;
   color: #000;
-  background: #dfe6f0;   /* light gray like screenshot */
+  background: #dfe6f0; /* light gray like screenshot */
   margin: 0;
 }
 
-.page {
+.page_cv {
   background: #fff;
   width: 800px;
   margin: 20px auto;
   padding: 40px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .avt {
@@ -35,8 +35,13 @@ body {
   font-size: 14px;
 }
 
-.contact a { color: #000; text-decoration: none; }
-.contact a:hover { text-decoration: underline; }
+.contact a {
+  color: #000;
+  text-decoration: none;
+}
+.contact a:hover {
+  text-decoration: underline;
+}
 
 /* Section headings */
 .section-title {
@@ -69,4 +74,117 @@ ul {
 
 ul li {
   margin: 4px 0;
+}
+
+#drum-kit img.drum-kit-image {
+  display: block;
+  margin: 40px auto;
+  width: 60%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page_drumkit {
+  background: #2a314b;
+  width: 800px;
+  margin: 20px auto;
+  padding: 40px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.drumkit-title {
+  text-align: center;
+  color: white;
+}
+
+.page_drumkit {
+  text-align: center;
+}
+
+/* 3D Drum Kit Title */
+.drumkit-title-3d {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4f8ff;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* Text word part (Drum / Kit) */
+.drumkit-title-3d .title-word {
+  text-shadow: 
+    0 0.25px 0 #e7eefb, 
+    0 0.5px 0 #d6e0f3, 
+    0 0.75px 0 #c4d2eb,
+    1.5px 1.5px 0 #ff2a7f, 
+    /* light pink edge */ 3px 3px 0 #d10b5b,
+    /* deeper shadow */ 10px 12px 18px rgba(0, 0, 0, 0.35); /* soft drop */
+}
+
+/* Drum emoji */
+.drumkit-title-3d .title-emoji {
+  transform: translateY(0.08em);
+  filter: drop-shadow(1px 1px 0 #ff2a7f) drop-shadow(2px 2px 0 #d10b5b)
+    drop-shadow(10px 12px 18px rgba(0, 0, 0, 0.35));
+}
+
+.drumkit-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.drum-pad img {
+  width: 80px;           /* Force a fixed width */
+  height: 80px;          /* Force a fixed height */
+  object-fit: contain;   /* Keeps proportions without distortion */
+  border-radius: 8px;
+}
+
+.drum-pad {
+  position: relative;
+  overflow: hidden;
+  background: #2d3450;
+  border-radius: 5px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.drum-pad p {
+  position: absolute;
+  inset: 0;                       /* top/right/bottom/left: 0 */
+  display: grid;                  /* easy centering */
+  place-items: center;            /* centers the letter */
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;           /* clicks go to the pad */
+
+  /* optional styling */
+  font-weight: 900;
+  font-size: 28px;
+  color: #ff007f;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 #222;
+}
+
+.drum-pad:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 42, 127, 0.6);
+}
+
+.letter {
+  position: absolute;     /* taken out of normal flow */
+  top: 50%; left: 50%;    /* place at center of the pad */
+  transform: translate(-50%, -50%); /* truly center it */
+  z-index: 1;             /* paint on top of the image */
+  pointer-events: none;   /* optional: don't block clicks */
 }
