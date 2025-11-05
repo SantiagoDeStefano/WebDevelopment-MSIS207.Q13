@@ -1,0 +1,14 @@
+.counter {
+  padding: 12px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  width: 180px;
+  text-align: center;
+}
+
+.counter h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
