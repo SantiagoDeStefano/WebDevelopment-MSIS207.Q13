@@ -83,7 +83,7 @@ const AddTodoForm = ({ onAdd }: AddTodoFormProps) => {
       <input
         type="text"
         value={text}
-        onChange={(e: any) => (text = e.target.value)}
+        onChange={(e: any) => setText(e.target.value)}
         placeholder="Enter a new todo..."
       />
       <button type="submit">Add</button>
@@ -131,3 +131,4 @@ export const TodoApp = ({ initialTodos = [] }: TodoAppProps) => {
     </div>
   );
 };
+
