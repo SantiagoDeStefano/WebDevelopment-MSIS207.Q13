@@ -2,7 +2,7 @@
 import { Counter } from "./counter";
 import { Dashboard } from "./dashboard";
 import { createElement, mount } from "./jsx-runtime";
-import "./style.css"; // 👈 Thêm dòng này để import CSS
+import "./style.css";
 import { TodoApp } from "./todo-app";
 
 const App = () => (
