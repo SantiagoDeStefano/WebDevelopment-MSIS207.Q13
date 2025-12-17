@@ -1,0 +1,13 @@
+Exercise 1: The React Paradigm
+- Imperative means you tell the system exactly how to do something step by step, while declarative means describing what you want and let the system handle the steps. Using the coffee example, imperative is giving instructions like “add coffee, then milk, then sugar,” while declarative is simply saying “I want a latte.”
+
+- Components are reusable, don’t need to rewrite the same UI over and over, maintainable because each piece is isolated and easier to debug, and scalable because large apps stay organized instead of turning into tangled, unreadable code.
+
+- The Virtual DOM is a lightweight copy of the real DOM that React updates in memory, then reconciliation compares the old and new versions to find differences, so React updates only what changed instead of touching the entire DOM, which makes rendering much faster.
+
+Exercise 2: Setting Up a Modern React Development Environment
+- Development server URL: After running npm run dev, the app runs at "http://localhost:5173/" This is the local development server provided by Vite.
+
+- File and folder purposes: index.html is the single HTML entry point where the React app is mounted, src/main.jsx is the JavaScript entry file that creates the React root and renders the app into the DOM, and src/App.jsx is the main React component where the core UI and application logic live.
+
+Exercise 5.2: useState, not props. Online/offline status is internal, changeable, and controlled by user interaction inside UserProfile. Props are for data coming from a parent. If tried to manage with props, it would be passing state down just to bounce events back up, which is bad design and unnecessary complexity. State exists for exactly this reason.
