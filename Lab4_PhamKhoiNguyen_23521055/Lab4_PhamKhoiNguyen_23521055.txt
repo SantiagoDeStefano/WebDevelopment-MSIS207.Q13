@@ -1,0 +1,74 @@
+Section 1: The useEffect Hook
+1.1. Conceptual Questions: The Effect Lifecycle
+
+1. useEffect is for syncing React with things it doesn’t control, like APIs, timers, event listeners, or subscriptions. React only handles rendering UI, so useEffect acts as an escape hatch when need interact with the outside world.
+
+2. An Effect’s lifecycle is simple: start syncing, then stop syncing. React runs the setup when needed, cleans it up when dependencies change, and cleans up one last time on unmount. This is different from class lifecycles, which track the component’s life stages. Effects don’t care about “mount” or “update”. They care about whether the synchronization is still valid.
+
+3. Strict Mode runs effects twice on initial mount in development to expose broken logic. It catches missing cleanups, side effects that aren’t reversible, and code that wrongly assumes it runs only once.
+
+1.2. Practical Exercise: Dependency Arrays 
+Scenario A:
+Pass []. An empty dependency array tells React to run the effect only on mount (and cleanup on unmount). This is how you say “do this once".
+
+Scenario B:
+Pass no dependency array at all. That means the effect runs after every render. This is almost always a bad idea because it’s easy to cause performance issues or infinite loops.
+
+Scenario C:
+Pass [userId]. The effect runs on mount and then re-runs only when userId changes. This keeps the data in sync with the current user and avoids unnecessary refetches. Anything used inside the effect that can change belongs in this array, no exceptions.
+
+Section 2: The useRef Hook 
+
+2.2. Conceptual Questions: useRef vs. useState
+
+1. useState updates trigger a re-render and are scheduled asynchronously by React. useRef updates do not trigger a re-render and update synchronously by mutating .current. If changing the value shouldn’t affect what’s on screen, useState is the wrong tool.
+
+2. A setInterval ID is just an implementation detail. Store it to clear it later, not to display it. Using useState would cause pointless re-renders every time the ID is set or cleared, which is wasted work. useRef lets you store the ID synchronously and persist it across renders without triggering renders, which is exactly what you want.
+
+3. The cardinal rule is simple: if the data affects what gets rendered, use useState; if it doesn’t and just need to keep a mutable value around, use useRef. Break this rule and you either get unnecessary renders or stale UI. Both are self-inflicted bugs.
+
+Section 3: Data Fetching Strategies
+
+3.1. Conceptual Questions: fetch vs. axios 
+
+1. fetch does not parse JSON automatically and does not treat HTTP errors as failures. Need to call response.json() and manually check status codes. Axios does both: it auto-parses JSON and automatically rejects the promise for non-2xx responses. Fetch is low-level; axios is opinionated and more convenient.
+
+2. With fetch, must explicitly check response.ok (or the status code) and throw an error. If don’t, 404s and 500s will look like “successful” requests and your code will happily continue with bad data.
+
+Section 4: Architecting Forms 
+
+4.2. Conceptual Questions: Controlled vs. Uncontrolled
+ 
+1. In a Controlled Component, the single source of truth is React state. The input’s value comes from state and can’t change unless React says so.
+
+2. In an Uncontrolled Component, the single source of truth is the DOM itself. The browser owns the input value, not React.
+
+3. The modern way is the FormData API. On submit, you read values from the form element using new FormData(event.currentTarget). useRef works, but it’s clunky and doesn’t scale — FormData is cleaner and built for forms.
+
+4.
+Pro: Controlled components gives full control, validation, conditional UI, and instant feedback are easy and predictable.
+Con: They cause more re-renders and more boilerplate, which can hurt performance and readability in very large forms if you’re careless.
+
+Section 5: React Router v6
+
+5.3. Conceptual Questions: Protected Routes
+
+1. The common pattern is to create a ProtectedRoute component that checks an auth condition (like isAuthenticated). If the user is authenticated, it renders an <Outlet /> so the nested routes can render. If not, it returns <Navigate to="/login" /> to redirect them. This keeps auth logic in one place and lets routing decide what mounts.
+
+2. The problem is a race condition between auth resolution and routing. With modern data loaders, routes can start loading data before auth status is fully known. The router may briefly render or even fetch protected data, then redirect once auth resolves. This causes wasted requests, UI flicker, and potential data leaks. The simple pattern assumes auth is synchronous. Which it isn’t in real apps.
+
+Section 6: The Context API 
+
+6.1. Conceptual Questions: Prop Drilling
+
+1. Prop drilling is when passing props through multiple component levels just so a deeply nested component can use them. The middle components don’t care about the data but are forced to accept and forward it anyway. This bloats APIs, hurts readability, and makes refactoring painful because a small change ripples through the entire tree.
+
+2. Context is a bad choice for high-frequency, rapidly changing state like form inputs, mouse position, or animation values. Every context update re-renders all consumers, which kills performance at scale. Context is for global, infrequently changing state (theme, auth, locale), not live data streams.
+
+Section 7: Custom Hooks
+
+7.1. Conceptual Questions: Custom Hook Rules 
+
+1. A custom hook must start with use and it must call other hooks at the top level (not inside loops, conditions, or nested functions).
+
+2. A custom hook shares logic, not state. When two components call the same custom hook, each call gets its own independent state. There is no shared state unless the hook explicitly uses something global (like Context).
