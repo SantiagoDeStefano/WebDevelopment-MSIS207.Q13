@@ -1,0 +1,19 @@
+[
+  { "id": "1", "title": "React Basics", "content": "React is a UI library..." },
+  { "id": "2", "title": "Redux Toolkit", "content": "RTK simplifies Redux..." },
+  {
+    "id": "3",
+    "title": "useReducer FSM",
+    "content": "Deterministic transitions..."
+  },
+  {
+    "id": "4",
+    "title": "Code Splitting",
+    "content": "Load chunks only when needed..."
+  },
+  {
+    "id": "5",
+    "title": "Testing with RTL",
+    "content": "Test behavior, not internals..."
+  }
+]
