@@ -1,0 +1,1 @@
+import{j as s}from"./index-BbdeBMVL.js";function e(){return s.jsxs("div",{style:{padding:24,fontFamily:"system-ui, sans-serif"},children:[s.jsx("h2",{children:"Admin Panel"}),s.jsx("p",{children:"This page is lazy-loaded."})]})}export{e as default};
